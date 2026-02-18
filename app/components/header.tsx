@@ -38,10 +38,14 @@ export default function Header() {
         <h3 className='cursor-pointer' onClick={() => scrollTo('team-section')}>
           Team
         </h3>
-        <h3>Resources</h3>
+        <h3
+          className='cursor-pointer'
+          onClick={() => scrollTo('project-resource')}
+        >
+          Resources
+        </h3>
         <Button>Get Started</Button>
       </div>
-
       {/* Mobile hamburger */}
       <button className='md:hidden p-2' onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -68,7 +72,15 @@ export default function Header() {
           >
             Team
           </h3>
-          <h3>Resources</h3>
+          <h3
+            className='cursor-pointer'
+            onClick={() => {
+              scrollTo('project-resource')
+              setMenuOpen(false)
+            }}
+          >
+            Resources
+          </h3>
           <Button className='w-full'>Get Started</Button>
         </div>
       )}

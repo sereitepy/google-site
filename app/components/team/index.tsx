@@ -5,7 +5,7 @@ export default function TeamSection() {
     {
       id: 'sereitepy-or',
       name: 'Sereitepy Or',
-      image: '/images/sereitepy.png',
+      image: '/images/professional-tepy.png',
       role: 'Full-Stack Developer',
     },
     {
@@ -17,7 +17,7 @@ export default function TeamSection() {
     {
       id: 'reaksmey',
       name: 'Reaksmey Meas',
-      image: '/images/sereitepy.png',
+      image: '/images/reaksmey.jpg',
       role: 'Project Researcher',
     },
   ]

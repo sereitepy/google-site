@@ -4,6 +4,7 @@ import { Geist_Mono, Inter } from 'next/font/google'
 import Header from './components/header'
 import './globals.css'
 import SettingsSection from './components/setting'
+import Footer from './components/footer'
 
 const inter = Inter({
   variable: '--font-inter-sans',
@@ -38,11 +39,13 @@ export default function RootLayout({
             {/* </Effect> */}
           </div>
 
-          <div className='sticky bottom-10 right-10'>
+          <div className='fixed bottom-10 right-10 z-50'>
             <SettingsSection />
           </div>
 
-          <div>footer</div>
+          <div>
+            <Footer />
+          </div>
         </div>
       </body>
     </html>

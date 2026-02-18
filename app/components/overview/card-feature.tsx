@@ -29,7 +29,7 @@ export default function CardFeature() {
         return (
           <section
             key={item.id}
-            className='p-7 rounded-lg bg-background flex flex-col gap-3 hover:shadow-md'
+            className='p-7 rounded-lg bg-background flex flex-col gap-3 hover:shadow-md dark:hover:shadow-accent dark:hover:shadow-lg'
           >
             <p className='bg-accent p-2 w-fit rounded-md'>
               <Icon size='18px' />

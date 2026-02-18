@@ -13,7 +13,7 @@ export default function TitleSection() {
 
       <p className='text-sidebar-accent-foreground'>
         The digital guide for Cambodian Students transitioning to higher
-        education. We specialize in the technology sector, helping you bridge
+        education. We are MIS students, we can help you bridge
         the gap between high school and a successful tech university decision.
       </p>
       <section className='flex items-center gap-5'>

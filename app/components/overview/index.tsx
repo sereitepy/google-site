@@ -7,8 +7,7 @@ export default function OverviewSection() {
         <h1 className='text-2xl font-bold text-center'>Project Overview</h1>
         <p className='w-full md:text-center text-sidebar-accent-foreground'>
           Empowering students to figure out their best matched technology major,
-          and picking the right university for their Bachelor&apos;s Degree
-          through our &quot;Personal Package&quot; survey.
+          and picking the right university for their Bachelor&apos;s Degree.
         </p>
       </div>
       <CardFeature />

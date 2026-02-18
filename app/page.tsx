@@ -1,5 +1,6 @@
 import Hero from './components/hero'
 import OverviewSection from './components/overview'
+import ProjectResource from './components/resource'
 import TeamSection from './components/team'
 
 export default function Home() {
@@ -13,6 +14,9 @@ export default function Home() {
       </div>
       <div id='team-section' className='px-10 md:px-20'>
         <TeamSection />
+      </div>
+      <div id='project-resource' className='bg-secondary px-10 md:px-20 py-10'>
+        <ProjectResource />
       </div>
     </div>
   )

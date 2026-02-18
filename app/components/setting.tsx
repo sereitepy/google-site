@@ -20,15 +20,9 @@ export default function SettingsSection() {
         <DropdownMenuContent align='end'>
           <DropdownMenuGroup>
             <DropdownMenuLabel>Theme</DropdownMenuLabel>
-            <div className='px-2 pb-2'>
-              <ThemeTogglerButton />
-            </div>
+            <div className='px-2 pb-2'></div>
           </DropdownMenuGroup>
-          {/* <DropdownMenuGroup> */}
-          {/* <DropdownMenuSeparator /> */}
-          {/* <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem> */}
-          {/* </DropdownMenuGroup> */}
+          <ThemeTogglerButton />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
