@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback, useEffect, RefObject } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
@@ -76,7 +76,7 @@ function Toolbar({
   onPageInput,
   isFullscreen,
   onToggleFullscreen,
-  onScrollToTop,
+  // onScrollToTop,
   scrollContainerId,
 }: {
   title: string
@@ -220,7 +220,7 @@ function PDFBody({
   onScrollToTop,
   onPageChange,
 }: {
-  scrollRef: React.RefObject<HTMLDivElement>
+  scrollRef: RefObject<HTMLDivElement | null>
   containerId: string
   fileUrl: string
   numPages: number | null
