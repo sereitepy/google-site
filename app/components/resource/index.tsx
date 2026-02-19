@@ -23,7 +23,7 @@ export default function ProjectResource() {
         />
         <div className='flex flex-col gap-3'>
           <GitHubProjectCard
-            href='https://github.com/users/sereitepy/projects/2/views/1'
+            href='https://github.com/users/sereitepy/projects/2/views/1?filterQuery='
             title='Sakol Life Team - Project Board'
             description='Task tracking for final year project'
           />
