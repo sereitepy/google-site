@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Header() {
@@ -38,13 +39,29 @@ export default function Header() {
         <h3 className='cursor-pointer' onClick={() => scrollTo('team-section')}>
           Team
         </h3>
-        <h3
+        {/* <h3
           className='cursor-pointer'
           onClick={() => scrollTo('project-resource')}
         >
           Resources
-        </h3>
-        <Button>Get Started</Button>
+        </h3> */}
+        <Link href='/manuscript/chapter-1'>
+          <Button
+            variant='outline'
+            className='w-fit hover:bg-primary/30 cursor-pointer'
+          >
+            View Manuscript
+          </Button>
+        </Link>
+        <Link
+          href='https://www.sakollife.com/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Button className='w-fit bg-accent-foreground hover:bg-foreground dark:hover:bg-chart-4'>
+            View Website
+          </Button>
+        </Link>
       </div>
       {/* Mobile hamburger */}
       <button className='md:hidden p-2' onClick={() => setMenuOpen(!menuOpen)}>
@@ -72,7 +89,7 @@ export default function Header() {
           >
             Team
           </h3>
-          <h3
+          {/* <h3
             className='cursor-pointer'
             onClick={() => {
               scrollTo('project-resource')
@@ -80,8 +97,24 @@ export default function Header() {
             }}
           >
             Resources
-          </h3>
-          <Button className='w-full'>Get Started</Button>
+          </h3> */}
+          <Link href='/manuscript/chapter-1'>
+            <Button
+              variant='outline'
+              className='w-fit hover:bg-primary/30 cursor-pointer'
+            >
+              View Manuscript
+            </Button>
+          </Link>
+          <Link
+            href='https://www.sakollife.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Button className='w-fit bg-accent-foreground hover:bg-foreground dark:hover:bg-chart-4'>
+              View Website
+            </Button>
+          </Link>
         </div>
       )}
     </div>

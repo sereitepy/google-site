@@ -48,7 +48,7 @@ export default function TeamSection() {
 
       <section className='order-first text-center'>
         <h1 className='text-2xl font-bold'>Our Team</h1>
-        <p className='text-sidebar-accent-foreground'>
+        <p className='text-accent-foreground'>
           The creative minds behind Sakol Life
         </p>
       </section>

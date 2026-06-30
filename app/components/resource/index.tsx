@@ -21,14 +21,7 @@ export default function ProjectResource() {
           fileUrl={presentation2Url}
           title='Project Proposal Presentation 2'
         />
-        <div className='flex flex-col gap-3'>
-          <GitHubProjectCard
-            href='https://github.com/users/sereitepy/projects/2/views/1'
-            title='Sakol Life Team - Project Board'
-            description='Task tracking for final year project'
-          />
-          <GitHubRepoCard />
-        </div>
+        
       </section>
     </div>
   )

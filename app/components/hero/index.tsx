@@ -1,6 +1,5 @@
-// hero.tsx
 import { GraduationCap } from 'lucide-react'
-import Image from 'next/image'
+import LaptopMockup from './laptop-mockup'
 import TitleSection from './title'
 
 export default function Hero() {
@@ -14,16 +13,8 @@ export default function Hero() {
           <TitleSection />
         </div>
       </section>
-
-      <section className='hidden w-full lg:flex-4 lg:flex justify-center lg:justify-end hover:shadow-[0px_10px_1px_rgba(221,221,221,1),0_10px_20px_rgba(204,204,204,1)] shadow-primary/20 dark:shadow-accent rounded-2xl shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
-        <Image
-          src='/images/hero2.webp'
-          alt='hero'
-          width={450}
-          height={1000}
-          className='w-full max-w-sm lg:max-w-none h-auto object-cover'
-        />
-      </section>
+      
+      <LaptopMockup />
     </div>
   )
 }
