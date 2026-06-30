@@ -15,9 +15,9 @@ export default function Home() {
       <div id='team-section' className='px-10 md:px-20'>
         <TeamSection />
       </div>
-      <div id='project-resource' className='bg-secondary px-10 md:px-20 py-10'>
+      {/* <div id='project-resource' className='bg-secondary px-10 md:px-20 py-10'>
         <ProjectResource />
-      </div>
+      </div> */}
     </div>
   )
 }

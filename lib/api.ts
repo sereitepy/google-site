@@ -1,17 +1,7 @@
-import { supabase } from '@/lib/supabase'
+const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 
-const { data: capstoneData } = supabase.storage
-  .from('documents')
-  .getPublicUrl('Sakol_Life_Bachelors_Capstone_2026.pdf')
+const BASE_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload`
 
-const { data: presentation2Data } = supabase.storage
-  .from('documents')
-  .getPublicUrl('fyp-presentation2.pdf')
-
-  const { data: presentation1Data } = supabase.storage
-    .from('documents')
-    .getPublicUrl('fyp-presentation1.pdf')
-
-export const capstoneUrl = capstoneData.publicUrl
-export const presentation2Url = presentation2Data.publicUrl
-export const presentation1Url = presentation1Data.publicUrl
+export const capstoneUrl = `${BASE_URL}/Sakol_Life_Bachelors_Capstone_2026.pdf`
+export const presentation2Url = `${BASE_URL}/fyp-presentation2.pdf`
+export const presentation1Url = `${BASE_URL}/fyp-presentation1.pdf`

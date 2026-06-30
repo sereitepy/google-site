@@ -1,9 +1,7 @@
 'use client'
 
-import { useState, useRef, useCallback, useEffect, RefObject } from 'react'
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
-import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css'
 import {
   Dialog,
   DialogContent,
@@ -13,14 +11,14 @@ import {
 import {
   ChevronLeft,
   ChevronRight,
-  ZoomIn,
-  ZoomOut,
-  RotateCw,
+  Download,
+  Expand,
   FileText,
   Maximize2,
   Minimize2,
-  Expand,
-  Download,
+  RotateCw,
+  ZoomIn,
+  ZoomOut,
 } from 'lucide-react'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`

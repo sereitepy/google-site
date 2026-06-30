@@ -5,7 +5,7 @@ export default function OverviewSection() {
     <div className='flex items-center flex-col gap-10 justify-center'>
       <div className='flex items-center flex-col gap-3 justify-center md:px-4'>
         <h1 className='text-2xl font-bold text-center'>Project Overview</h1>
-        <p className='w-full md:text-center text-sidebar-accent-foreground'>
+        <p className='w-full md:text-center text-accent-foreground'>
           Empowering students to figure out their best matched technology major,
           and picking the right university for their Bachelor&apos;s Degree.
         </p>

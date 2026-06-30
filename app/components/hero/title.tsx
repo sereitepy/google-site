@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function TitleSection() {
   return (
@@ -13,16 +14,27 @@ export default function TitleSection() {
 
       <p className='text-sidebar-accent-foreground'>
         The digital guide for Cambodian Students transitioning to higher
-        education. We are MIS students, we can help you bridge
-        the gap between high school and a successful tech university decision.
+        education. We are MIS students, we can help you bridge the gap between
+        high school and a successful tech university decision.
       </p>
       <section className='flex items-center gap-5'>
-        <Button className='w-fit bg-accent-foreground hover:bg-foreground dark:hover:bg-chart-4'>
-          Explore Majors
-        </Button>
-        <Button variant='outline' className='w-fit hover:bg-chart-4'>
-          Learn More
-        </Button>
+        <Link
+          href='https://www.sakollife.com/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Button className='w-fit bg-accent-foreground hover:bg-foreground dark:hover:bg-chart-4'>
+            View Website
+          </Button>
+        </Link>
+        <Link href='/manuscript/chapter-1'>
+          <Button
+            variant='outline'
+            className='w-fit hover:bg-primary/30 cursor-pointer'
+          >
+            View Manuscript
+          </Button>
+        </Link>
       </section>
     </div>
   )
