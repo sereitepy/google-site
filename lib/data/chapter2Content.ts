@@ -1,9 +1,11 @@
-export interface CompetitorRow {
-  name: string
-  guestAccess: boolean
-  focusMajor: boolean
-  uxFriendly: boolean
-  dataCollected: boolean
+// ==========================================
+// File: @/lib/data/chapter2Content.ts
+// ==========================================
+
+export interface RiasecRow {
+  type: string
+  description: string
+  examples: string[]
 }
 
 export interface RecommenderRow {
@@ -13,10 +15,12 @@ export interface RecommenderRow {
   hybrid: string
 }
 
-export interface RiasecRow {
-  type: string
-  description: string
-  examples: string[]
+export interface CompetitorRow {
+  name: string
+  guestAccess: boolean
+  focusMajor: boolean
+  uxFriendly: boolean
+  dataCollected: boolean
 }
 
 export interface SubSection {
@@ -304,3 +308,4 @@ export const chapter2Content: Chapter2DataType = {
     },
   ],
 }
+
