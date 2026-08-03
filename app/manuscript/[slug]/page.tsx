@@ -8,6 +8,7 @@ import { chapter2Content } from '@/lib/data/chapter2Content'
 import { chapter3Content } from '@/lib/data/chapter3Content' // <-- Inject the new schema definition payload reference
 import { chapters } from '@/lib/manuscript-data'
 
+//app/manuscript/[slug]/page.tsx
 export default async function ManuscriptPage({
   params,
 }: {

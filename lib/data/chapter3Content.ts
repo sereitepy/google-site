@@ -1,4 +1,6 @@
-// @/lib/data/chapter3Content.ts
+// ==========================================
+// File: @/lib/data/chapter3Content.ts
+// ==========================================
 
 export interface TechnologyRow {
   category: string

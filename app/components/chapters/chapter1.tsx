@@ -1,3 +1,5 @@
+'use client'
+
 import { SectionContent } from '@/lib/data/chapter1Content'
 import { ManuscriptSubItem } from '@/lib/manuscript-data'
 
@@ -18,7 +20,7 @@ interface ChapterProp {
 
 export default function ChapterOne({ chapter, chapterMeta }: ChapterProp) {
   return (
-    <div>
+    <div className='space-y-12'>
       {chapter.sections.map(section => {
         const sectionMeta = chapterMeta?.sections.find(
           s => s.anchor === section.anchor
@@ -28,34 +30,37 @@ export default function ChapterOne({ chapter, chapterMeta }: ChapterProp) {
           <section
             key={section.anchor}
             id={section.anchor}
-            className='scroll-mt-20 space-y-4'
+            className='scroll-mt-24 space-y-6 rounded-2xl border border-white/10 bg-slate-900/30 p-8 backdrop-blur-md shadow-xl'
           >
             {sectionMeta && (
-              <h2 className='text-2xl font-bold border-b pb-2 tracking-tight mt-8'>
+              <h2 className='text-2xl font-bold tracking-tight text-cyan-400 border-b border-white/10 pb-3'>
                 {sectionMeta.title}
               </h2>
             )}
 
-            {/* Core Paragraphs */}
             {section.paragraphs.map((p, idx) => (
-              <p key={idx} className='leading-relaxed text-justify text-base'>
+              <p
+                key={idx}
+                className='leading-relaxed text-justify text-slate-300 font-sans text-base'
+              >
                 {p}
               </p>
             ))}
 
-            {/* Subsections (like 1.5.1 and 1.5.2) */}
             {section.subsections &&
               section.subsections.map(sub => (
                 <div
                   key={sub.anchor}
                   id={sub.anchor}
-                  className='scroll-mt-20 pl-4 border-l-2 border-slate-300 dark:border-slate-700 space-y-2 mt-4'
+                  className='scroll-mt-24 pl-5 border-l-2 border-cyan-500/40 space-y-3 mt-6 bg-cyan-950/10 p-4 rounded-r-xl'
                 >
-                  <h3 className='text-xl font-semibold'>{sub.title}</h3>
+                  <h3 className='text-lg font-semibold text-slate-100'>
+                    {sub.title}
+                  </h3>
                   {sub.paragraphs.map((subP, sIdx) => (
                     <p
                       key={sIdx}
-                      className='leading-relaxed text-justify text-sm text-slate-600 dark:text-slate-400'
+                      className='leading-relaxed text-justify text-sm text-slate-400'
                     >
                       {subP}
                     </p>
@@ -63,26 +68,25 @@ export default function ChapterOne({ chapter, chapterMeta }: ChapterProp) {
                 </div>
               ))}
 
-            {/* Render Terms Table (Section 1.7) */}
             {section.termsTable && (
-              <div className='overflow-x-auto border rounded-lg mt-6 bg-white dark:bg-slate-950'>
+              <div className='overflow-x-auto border border-white/10 rounded-xl mt-6 bg-slate-950/80 backdrop-blur-md'>
                 <table className='w-full text-left border-collapse text-sm'>
                   <thead>
-                    <tr className='bg-slate-50 dark:bg-slate-900 border-b'>
-                      <th className='p-3 font-bold w-1/3'>Terms</th>
-                      <th className='p-3 font-bold'>Definitions</th>
+                    <tr className='bg-slate-900 border-b border-white/10 text-cyan-400'>
+                      <th className='p-4 font-bold w-1/3'>Terms</th>
+                      <th className='p-4 font-bold'>Definitions</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className='divide-y divide-white/5'>
                     {section.termsTable.map((item, tIdx) => (
                       <tr
                         key={tIdx}
-                        className='border-b last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-900/50'
+                        className='hover:bg-white/5 transition-colors'
                       >
-                        <td className='p-3 font-semibold text-blue-600 dark:text-blue-400'>
+                        <td className='p-4 font-semibold text-cyan-300'>
                           {item.term}
                         </td>
-                        <td className='p-3 text-slate-600 dark:text-slate-400 leading-normal'>
+                        <td className='p-4 text-slate-300 leading-normal'>
                           {item.definition}
                         </td>
                       </tr>

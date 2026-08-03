@@ -287,3 +287,4 @@ export const appendixItems: ManuscriptSubItem[] = [
     anchor: 'appendix-d',
   },
 ]
+//lib/manuscript-data.ts

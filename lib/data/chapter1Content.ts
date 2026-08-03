@@ -242,3 +242,4 @@ export const chapter1Content: {
     },
   ],
 }
+//lib/data/chapter1Content.ts

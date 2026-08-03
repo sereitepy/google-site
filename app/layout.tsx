@@ -1,10 +1,11 @@
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import type { Metadata } from 'next'
 import { Geist_Mono, Inter } from 'next/font/google'
+import { SidebarProvider } from '@/components/ui/sidebar'
 import { ConditionalSidebar } from './components/conditional-sidebar'
 import ConditionalHeader from './components/conditional-header'
 import Footer from './components/footer'
-import SettingsSection from './components/setting'
+import { SmoothScrollProvider } from './components/smooth-scroll'
+import 'lenis/dist/lenis.css'
 import './globals.css'
 
 const inter = Inter({
@@ -18,8 +19,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Sakol Life',
-  description: 'Navigating to your future',
+  title: 'Sakol Life - Navigating Higher Education',
+  description:
+    'An interactive digital guide for Cambodian students transitioning into tech university majors.',
 }
 
 export default function RootLayout({
@@ -28,37 +30,28 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
-        <div className='flex flex-col justify-between min-h-screen relative'>
-          <ConditionalHeader />
+    <html lang='en' className='dark scroll-smooth'>
+      <body
+        className={`${inter.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary`}
+      >
+        <SmoothScrollProvider>
+          <div className='flex flex-col justify-between min-h-screen relative overflow-x-hidden'>
+            <div className='grow flex flex-col'>
+              <SidebarProvider>
+                <div className='flex w-full grow items-stretch min-h-[calc(100vh-4rem)]'>
+                  <ConditionalSidebar />
 
-          {/* Standard main body container layout */}
-          <div className='grow bg-primary-foreground flex flex-col'>
-            <SidebarProvider>
-              <div className='flex w-full grow items-stretch min-h-[calc(100vh-4rem)]'>
-                {/* Left Side: Your regular, steady sidebar wrapper */}
-                <ConditionalSidebar />
+                  <main className='grow w-full relative min-w-0 flex flex-col'>
+                    <ConditionalHeader />
+                    <div className='grow'>{children}</div>
+                  </main>
+                </div>
+              </SidebarProvider>
+            </div>
 
-                {/* Right Side: The standard manuscript core text area container */}
-                <main className='grow w-full relative'>
-                  <div className='mb-6 flex items-center'>
-                    <SidebarTrigger className='cursor-pointer' />
-                  </div>
-                  {children}
-                </main>
-              </div>
-            </SidebarProvider>
-          </div>
-
-          <div className='fixed bottom-10 right-10 z-50'>
-            <SettingsSection />
-          </div>
-
-          <div>
             <Footer />
           </div>
-        </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   )
