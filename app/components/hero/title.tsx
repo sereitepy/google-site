@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, BookOpen, ExternalLink } from 'lucide-react'
+import { BookOpen, ExternalLink } from 'lucide-react'
 import { Variants } from 'framer-motion'
 
 export default function TitleSection() {
@@ -31,7 +31,8 @@ export default function TitleSection() {
     <motion.div
       variants={containerVariants}
       initial='hidden'
-      animate='visible'
+      whileInView='visible'
+      viewport={{ once: false, amount: 0.2 }}
       className='flex flex-col gap-6 max-w-2xl'
     >
       <motion.h1
