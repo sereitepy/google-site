@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
 import { Geist_Mono, Inter } from 'next/font/google'
-import { SidebarProvider } from '@/components/ui/sidebar'
 import { ConditionalSidebar } from './components/conditional-sidebar'
 import ConditionalHeader from './components/conditional-header'
 import Footer from './components/footer'
-import { SmoothScrollProvider } from './components/smooth-scroll'
-import 'lenis/dist/lenis.css'
 import './globals.css'
 
 const inter = Inter({
@@ -19,9 +16,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Sakol Life - Navigating Higher Education',
-  description:
-    'An interactive digital guide for Cambodian students transitioning into tech university majors.',
+  title: 'SakoLife — A clearer path to a future in tech',
+  description: 'Explore the story, process, and lessons behind SakoLife, a student-centered guide to technology majors and Cambodian universities.',
 }
 
 export default function RootLayout({
@@ -30,28 +26,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' className='dark scroll-smooth'>
-      <body
-        className={`${inter.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary`}
-      >
-        <SmoothScrollProvider>
-          <div className='flex flex-col justify-between min-h-screen relative overflow-x-hidden'>
-            <div className='grow flex flex-col'>
-              <SidebarProvider>
-                <div className='flex w-full grow items-stretch min-h-[calc(100vh-4rem)]'>
-                  <ConditionalSidebar />
-
-                  <main className='grow w-full relative min-w-0 flex flex-col'>
-                    <ConditionalHeader />
-                    <div className='grow'>{children}</div>
-                  </main>
-                </div>
-              </SidebarProvider>
+    <html lang='en'>
+      <body className={`${inter.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-primary/20`}>
+        <div className='relative flex min-h-screen flex-col overflow-x-hidden'>
+          <div className='grow flex flex-col'>
+            <div className='flex w-full grow items-stretch min-h-[calc(100vh-4rem)]'>
+              <ConditionalSidebar />
+              <main className='relative flex min-w-0 grow flex-col'>
+                <ConditionalHeader />
+                <div className='grow'>{children}</div>
+              </main>
             </div>
-
-            <Footer />
           </div>
-        </SmoothScrollProvider>
+          <Footer />
+        </div>
       </body>
     </html>
   )
