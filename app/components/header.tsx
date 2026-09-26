@@ -1,134 +1,43 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Menu, X, ExternalLink, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { ArrowUpRight, BookOpen, Menu, X } from 'lucide-react'
+
+const links = [
+  { href: '/#project', label: 'The project' },
+  { href: '/process', label: 'Process' },
+  { href: '/build-notes', label: 'Build notes' },
+]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id)
-    if (!element) return
-    const offset = 80
-    const top = element.getBoundingClientRect().top + window.scrollY - offset
-    window.scrollTo({ top, behavior: 'smooth' })
-  }
-
   return (
-    <div className='max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between w-full'>
-      {/* Brand Logo */}
-      <div
-        className='flex items-center gap-2 cursor-pointer group'
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-          setMenuOpen(false)
-        }}
-      >
-        <div className='w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-black group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300'>
-          S
-        </div>
-        <span className='font-bold text-lg text-foreground tracking-tight group-hover:text-primary transition-colors'>
-          Sakol Life
+    <div className='relative mx-auto flex h-[76px] w-full max-w-7xl items-center justify-between px-6 sm:px-10 lg:px-14'>
+      <Link href='/' className='group flex items-center gap-3' onClick={() => setMenuOpen(false)}>
+        <span className='flex h-10 w-10 items-center justify-center rounded-2xl bg-[#526d56] font-serif text-lg text-white transition-transform group-hover:-rotate-3'>S</span>
+        <span className='flex flex-col leading-tight'>
+          <span className='font-semibold tracking-tight text-[#32473a]'>SakoLife</span>
+          <span className='mt-1 text-[10px] uppercase tracking-[.16em] text-[#829083]'>Project showcase</span>
         </span>
-      </div>
+      </Link>
 
-      {/* Desktop Navigation */}
-      <nav className='hidden md:flex items-center gap-2 text-sm font-medium text-muted-foreground'>
-        <button
-          onClick={() => scrollTo('project-overview')}
-          className='px-3 py-1.5 rounded-lg hover:text-foreground hover:bg-muted/60 transition-all cursor-pointer'
-        >
-          Overview
-        </button>
-        <button
-          onClick={() => scrollTo('team-section')}
-          className='px-3 py-1.5 rounded-lg hover:text-foreground hover:bg-muted/60 transition-all cursor-pointer'
-        >
-          Team
-        </button>
-
-        <div className='h-4 w-px bg-border mx-2' />
-
-        <Link href='/manuscript/chapter-1'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='gap-2 text-foreground hover:bg-primary/10 hover:text-primary border border-transparent hover:border-primary/20 cursor-pointer'
-          >
-            <BookOpen size={15} />
-            Manuscript
-          </Button>
-        </Link>
-
-        <Link
-          href='https://www.sakollife.com/'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <Button
-            size='sm'
-            className='gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-xs cursor-pointer'
-          >
-            Visit Website
-            <ExternalLink size={14} />
-          </Button>
-        </Link>
+      <nav className='hidden items-center gap-7 md:flex'>
+        {links.map((link) => <Link key={link.href} href={link.href} className='text-sm font-medium text-[#6a796e] transition-colors hover:text-[#3d5e46]'>{link.label}</Link>)}
+        <Link href='/manuscript/chapter-1' className='inline-flex items-center gap-2 rounded-full border border-[#d5dfd2] bg-white/70 px-4 py-2 text-sm font-semibold text-[#4d6751] transition-colors hover:bg-white'><BookOpen size={15} /> Manuscript</Link>
+        <a href='https://www.sakollife.com/en' target='_blank' rel='noreferrer' className='inline-flex items-center gap-1.5 rounded-full bg-[#526d56] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#405c47]'>Open SakoLife <ArrowUpRight size={15} /></a>
       </nav>
 
-      {/* Mobile Hamburger Button */}
-      <button
-        className='md:hidden p-2 rounded-lg text-foreground hover:bg-muted border border-border/50'
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label='Toggle Menu'
-      >
-        {menuOpen ? <X size={20} /> : <Menu size={20} />}
+      <button type='button' className='flex h-10 w-10 items-center justify-center rounded-full border border-[#d6dfd3] bg-white text-[#4e6752] md:hidden' onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={menuOpen}>
+        {menuOpen ? <X size={18} /> : <Menu size={18} />}
       </button>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className='absolute top-full left-0 right-0 bg-card border-b border-border flex flex-col gap-3 p-6 md:hidden shadow-2xl backdrop-blur-2xl animate-in slide-in-from-top-2 duration-200'>
-          <button
-            className='text-left px-3 py-2 rounded-md font-medium text-foreground hover:bg-muted'
-            onClick={() => {
-              scrollTo('project-overview')
-              setMenuOpen(false)
-            }}
-          >
-            Overview
-          </button>
-          <button
-            className='text-left px-3 py-2 rounded-md font-medium text-foreground hover:bg-muted'
-            onClick={() => {
-              scrollTo('team-section')
-              setMenuOpen(false)
-            }}
-          >
-            Team
-          </button>
-
-          <div className='h-px bg-border my-1' />
-
-          <Link href='/manuscript/chapter-1' onClick={() => setMenuOpen(false)}>
-            <Button variant='outline' className='w-full justify-start gap-2'>
-              <BookOpen size={16} />
-              View Manuscript
-            </Button>
-          </Link>
-          <Link
-            href='https://www.sakollife.com/'
-            target='_blank'
-            rel='noopener noreferrer'
-            onClick={() => setMenuOpen(false)}
-          >
-            <Button className='w-full justify-start gap-2 bg-primary text-primary-foreground'>
-              <ExternalLink size={16} />
-              Visit Website
-            </Button>
-          </Link>
-        </div>
-      )}
+      {menuOpen && <nav className='absolute left-4 right-4 top-[68px] z-50 flex flex-col gap-1 rounded-2xl border border-[#dce4d9] bg-[#fbfcf8] p-3 shadow-xl md:hidden'>
+        {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className='rounded-xl px-4 py-3 text-sm font-medium text-[#506653] hover:bg-[#edf2ea]'>{link.label}</Link>)}
+        <Link href='/manuscript/chapter-1' onClick={() => setMenuOpen(false)} className='rounded-xl px-4 py-3 text-sm font-medium text-[#506653] hover:bg-[#edf2ea]'>Project manuscript</Link>
+        <a href='https://www.sakollife.com/en' target='_blank' rel='noreferrer' onClick={() => setMenuOpen(false)} className='mt-1 flex items-center justify-center gap-2 rounded-xl bg-[#526d56] px-4 py-3 text-sm font-semibold text-white'>Open SakoLife <ArrowUpRight size={15} /></a>
+      </nav>}
     </div>
   )
 }
