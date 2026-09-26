@@ -5,6 +5,7 @@ import OverviewSection from './components/overview'
 import TeamSection from './components/team'
 import { ScrollReveal } from './components/scroll-reveal'
 import { TextMarquee } from './components/text-marquee'
+import { ScrollInView } from './components/scroll-in-view'
 
 export default function Home() {
   return (
@@ -18,8 +19,13 @@ export default function Home() {
       <div className='max-w-7xl mx-auto px-6 lg:px-12 py-12 md:py-20 flex flex-col gap-24'>
         <Hero />
 
-        <TextMarquee text='MIS FINAL YEAR PROJECT 2026 • CAMBODIA HIGHER EDUCATION' />
+        <ScrollInView index={1}>
+          <div>
+            <TextMarquee text='MIS FINAL YEAR PROJECT 2026 • CAMBODIA HIGHER EDUCATION' />
+          </div>
+        </ScrollInView>
 
+        <ScrollInView index={0}>
         <div className='max-w-4xl mx-auto py-12'>
           <p className='text-xs font-mono uppercase tracking-widest text-cyan-400 mb-4'>
             The Mission
@@ -29,14 +35,19 @@ export default function Home() {
             className='text-2xl sm:text-4xl font-extrabold text-slate-200'
           />
         </div>
+        </ScrollInView>
 
-        <div id='project-overview' className='relative'>
-          <OverviewSection />
-        </div>
+        <ScrollInView index={2}>
+          <div id='project-overview' className='relative'>
+            <OverviewSection />
+          </div>
+        </ScrollInView>
 
-        <div id='team-section' className='relative py-12'>
-          <TeamSection />
-        </div>
+        <ScrollInView index={1}>
+          <div id='team-section' className='relative py-12'>
+            <TeamSection />
+          </div>
+        </ScrollInView>
       </div>
     </div>
   )

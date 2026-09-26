@@ -11,6 +11,7 @@ import {
   organizationData,
 } from '@/lib/data/chapter3Content'
 import { ManuscriptSubItem } from '@/lib/manuscript-data'
+import { ScrollInView } from '@/app/components/scroll-in-view'
 
 interface Chapter3Prop {
   chapter: Chapter3DataType
@@ -25,16 +26,15 @@ interface Chapter3Prop {
 export default function ChapterThree({ chapter, chapterMeta }: Chapter3Prop) {
   return (
     <div className='space-y-12'>
-      {chapter.sections.map(section => {
+      {chapter.sections.map((section, index) => {
         const sectionMeta = chapterMeta?.sections.find(
           s => s.anchor === section.anchor
         )
         const displayTitle = sectionMeta?.title || section.title
 
         return (
-          <section
-            key={section.anchor}
-            id={section.anchor}
+          <ScrollInView key={section.anchor} index={index}>
+          <section id={section.anchor}
             className='scroll-mt-24 space-y-6 rounded-2xl border border-white/10 bg-slate-900/30 p-8 backdrop-blur-md shadow-xl'
           >
             {displayTitle && (
@@ -516,6 +516,7 @@ export default function ChapterThree({ chapter, chapterMeta }: Chapter3Prop) {
               </div>
             )}
           </section>
+          </ScrollInView>
         )
       })}
     </div>

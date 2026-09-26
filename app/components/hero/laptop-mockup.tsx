@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { Compass, GraduationCap, MapPin } from 'lucide-react'
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 const VIDEO_PUBLIC_ID =
@@ -10,6 +11,11 @@ const VIDEO_PUBLIC_ID =
 
 export default function LaptopMockup() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+  const cardsX = useMotionValue(0)
+  const cardsY = useMotionValue(0)
+  const cardsXSpring = useSpring(cardsX, { stiffness: 70, damping: 20 })
+  const cardsYSpring = useSpring(cardsY, { stiffness: 70, damping: 20 })
 
   // 3D Tilt Effect Values
   const x = useMotionValue(0)
@@ -29,13 +35,21 @@ export default function LaptopMockup() {
     const mouseX = e.clientX - rect.left
     const mouseY = e.clientY - rect.top
 
-    x.set(mouseX / width - 0.5)
-    y.set(mouseY / height - 0.5)
+    if (prefersReducedMotion) return
+
+    const normalizedX = mouseX / width - 0.5
+    const normalizedY = mouseY / height - 0.5
+    x.set(normalizedX)
+    y.set(normalizedY)
+    cardsX.set(normalizedX * 18)
+    cardsY.set(normalizedY * 14)
   }
 
   const handleMouseLeave = () => {
     x.set(0)
     y.set(0)
+    cardsX.set(0)
+    cardsY.set(0)
     videoRef.current?.pause()
     if (videoRef.current) videoRef.current.currentTime = 0
   }
@@ -46,11 +60,62 @@ export default function LaptopMockup() {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => videoRef.current?.play()}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, scale: 0.9, y: 30 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
+      initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9, y: 30 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className='w-full max-w-xl mx-auto select-none perspective-1000'
+      className='relative w-full max-w-xl mx-auto select-none perspective-1000'
     >
+      <motion.div
+        style={{ x: cardsXSpring, y: cardsYSpring }}
+        className='pointer-events-none absolute inset-0 z-10'
+      >
+        <motion.div
+          animate={prefersReducedMotion ? { y: 0 } : { y: [0, -7, 0] }}
+          transition={{ duration: prefersReducedMotion ? 0 : 6, repeat: Infinity, ease: 'easeInOut' }}
+          className='absolute -left-2 top-[10%] sm:-left-8'
+        >
+          <div className='flex items-center gap-3 rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:px-4'>
+            <span className='grid h-9 w-9 place-items-center rounded-lg bg-cyan-400/15 text-cyan-300'>
+              <Compass size={18} />
+            </span>
+            <span className='text-left'>
+              <span className='block text-[10px] font-medium text-slate-400'>Find your direction</span>
+              <span className='block text-xs font-semibold text-white'>Personalized quiz</span>
+            </span>
+          </div>
+        </motion.div>
+        <motion.div
+          animate={prefersReducedMotion ? { y: 0 } : { y: [0, 8, 0] }}
+          transition={{ duration: prefersReducedMotion ? 0 : 7, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          className='absolute -right-2 top-[37%] sm:-right-7'
+        >
+          <div className='flex items-center gap-3 rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:px-4'>
+            <span className='grid h-9 w-9 place-items-center rounded-lg bg-emerald-400/15 text-emerald-300'>
+              <GraduationCap size={18} />
+            </span>
+            <span className='text-left'>
+              <span className='block text-[10px] font-medium text-slate-400'>Explore what&apos;s next</span>
+              <span className='block text-xs font-semibold text-white'>Technology majors</span>
+            </span>
+          </div>
+        </motion.div>
+        <motion.div
+          animate={prefersReducedMotion ? { y: 0 } : { y: [0, -6, 0] }}
+          transition={{ duration: prefersReducedMotion ? 0 : 6.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          className='absolute bottom-[12%] left-[21%] sm:left-[25%]'
+        >
+          <div className='flex items-center gap-3 rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:px-4'>
+            <span className='grid h-9 w-9 place-items-center rounded-lg bg-violet-400/15 text-violet-300'>
+              <MapPin size={18} />
+            </span>
+            <span className='text-left'>
+              <span className='block text-[10px] font-medium text-slate-400'>Plan your journey</span>
+              <span className='block text-xs font-semibold text-white'>University guide</span>
+            </span>
+          </div>
+        </motion.div>
+      </motion.div>
       <div className='relative rounded-2xl border border-white/10 bg-gradient-to-b from-neutral-800 to-neutral-950 p-2 shadow-2xl backdrop-blur-xl'>
         <div className='relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-black group'>
           <Link
