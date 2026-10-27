@@ -33,9 +33,14 @@ export default function CardFeature() {
         return (
           <motion.div
             key={item.id}
-            initial={{ opacity: 0, y: 45, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ amount: 0.35 }}
+            initial={{
+              opacity: 0,
+              x: index === 1 ? 0 : index === 0 ? -48 : 48,
+              y: index === 1 ? 42 : 0,
+              scale: 0.95,
+            }}
+            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            viewport={{ amount: 0.35, once: false }}
             transition={{
               type: 'spring',
               stiffness: 100,

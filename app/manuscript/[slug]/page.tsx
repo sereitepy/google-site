@@ -7,6 +7,7 @@ import { chapter1Content } from '@/lib/data/chapter1Content'
 import { chapter2Content } from '@/lib/data/chapter2Content'
 import { chapter3Content } from '@/lib/data/chapter3Content' // <-- Inject the new schema definition payload reference
 import { chapters } from '@/lib/manuscript-data'
+import { ScrollInView } from '@/app/components/scroll-in-view'
 
 //app/manuscript/[slug]/page.tsx
 export default async function ManuscriptPage({
@@ -25,6 +26,7 @@ export default async function ManuscriptPage({
   if (slug === 'chapter-1') {
     return (
       <article className='max-w-4xl mx-auto p-6 md:p-12 flex flex-col gap-5 text-slate-800 dark:text-slate-200'>
+        <ScrollInView index={0}>
         <header className='border-b pb-6 border-slate-200 dark:border-slate-800'>
           <h1 className='text-3xl font-extrabold tracking-tight'>
             {chapterMeta?.title}
@@ -33,6 +35,7 @@ export default async function ManuscriptPage({
             Manuscript Page: {chapterMeta?.page}
           </p>
         </header>
+        </ScrollInView>
         <ChapterOne chapter={chapter1Content} chapterMeta={chapterMeta} />
       </article>
     )
@@ -44,6 +47,7 @@ export default async function ManuscriptPage({
   if (slug === 'chapter-2') {
     return (
       <article className='max-w-4xl mx-auto p-6 md:p-12 flex flex-col gap-5 text-slate-800 dark:text-slate-200'>
+        <ScrollInView index={0}>
         <header className='border-b pb-6 border-slate-200 dark:border-slate-800'>
           <h1 className='text-3xl font-extrabold tracking-tight'>
             {chapterMeta?.title}
@@ -52,6 +56,7 @@ export default async function ManuscriptPage({
             Manuscript Page: {chapterMeta?.page}
           </p>
         </header>
+        </ScrollInView>
         <ChapterTwo chapter={chapter2Content} />
       </article>
     )
@@ -63,6 +68,7 @@ export default async function ManuscriptPage({
   if (slug === 'chapter-3') {
     return (
       <article className='max-w-4xl mx-auto p-6 md:p-12 flex flex-col gap-5 text-slate-800 dark:text-slate-200'>
+        <ScrollInView index={0}>
         <header className='border-b pb-6 border-slate-200 dark:border-slate-800'>
           <h1 className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50'>
             {chapterMeta?.title || 'Chapter 3: Methodology and Design Layout'}
@@ -71,6 +77,7 @@ export default async function ManuscriptPage({
             Manuscript Page Section Pointer: {chapterMeta?.page || 3}
           </p>
         </header>
+        </ScrollInView>
 
         {/* Call your newly created ChapterThree renderer pass down hooks */}
         <ChapterThree chapter={chapter3Content} chapterMeta={chapterMeta} />

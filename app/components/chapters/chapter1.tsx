@@ -2,6 +2,7 @@
 
 import { SectionContent } from '@/lib/data/chapter1Content'
 import { ManuscriptSubItem } from '@/lib/manuscript-data'
+import { ScrollInView } from '@/app/components/scroll-in-view'
 
 interface ChapterProp {
   chapter: {
@@ -21,15 +22,14 @@ interface ChapterProp {
 export default function ChapterOne({ chapter, chapterMeta }: ChapterProp) {
   return (
     <div className='space-y-12'>
-      {chapter.sections.map(section => {
+      {chapter.sections.map((section, index) => {
         const sectionMeta = chapterMeta?.sections.find(
           s => s.anchor === section.anchor
         )
 
         return (
-          <section
-            key={section.anchor}
-            id={section.anchor}
+          <ScrollInView key={section.anchor} index={index}>
+          <section id={section.anchor}
             className='scroll-mt-24 space-y-6 rounded-2xl border border-white/10 bg-slate-900/30 p-8 backdrop-blur-md shadow-xl'
           >
             {sectionMeta && (
@@ -96,6 +96,7 @@ export default function ChapterOne({ chapter, chapterMeta }: ChapterProp) {
               </div>
             )}
           </section>
+          </ScrollInView>
         )
       })}
     </div>
